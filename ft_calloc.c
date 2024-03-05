@@ -6,7 +6,7 @@
 /*   By: mariama3 <mariama3@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 00:18:48 by mariama3          #+#    #+#             */
-/*   Updated: 2024/02/22 19:01:29 by mariama3         ###   ########.fr       */
+/*   Updated: 2024/02/29 19:49:51 by mariama3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,22 @@
 
 void	*ft_calloc(size_t count, size_t size)
 {
-	void	*index;
+	unsigned char	*sol;
+	size_t			i;
 
-	index = malloc(count * size);
-	if (index == NULL)
+	i = 0;
+	if (!count || !size)
 	{
-		return (0);
+		sol = (void *)malloc(0);
+		return (sol);
 	}
-	ft_bzero(index, count * size);
-	return (index);
-	free(index);
+	sol = malloc(count * size);
+	if (!sol)
+		return (0);
+	while (i < count * size)
+	{
+		sol[i] = '\0';
+		i++;
+	}
+	return (sol);
 }
